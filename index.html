@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andys Apps</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+    <style>
+        /* --- THEME SETTINGS --- */
+        :root {
+            --bg-color: #121212;
+            --text-main: #E0E0E0;
+            --text-muted: #888888; 
+            
+            /* Soft Pastels */
+            --accent-blue: #AEC6CF;
+            --accent-pink: #FFB7B2;
+            --accent-green: #77DD77;
+        }
+
+        /* --- RESET --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        /* --- MAIN LAYOUT CONTAINER --- */
+        .main-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex-grow: 1; 
+            padding-top: 15vh; 
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- LOGO --- */
+        .logo {
+            /* FIXED: Uses % for scaling, but min-width ensures it's never too small */
+            width: 50%;           /* Scales relative to screen */
+            min-width: 120px;     /* Prevents it getting microscopic on mobile */
+            max-width: 200px;     /* Prevents it getting huge on wide screens */
+            height: auto;         /* Maintains aspect ratio */
+            
+            margin-bottom: 1rem;
+            display: block;
+            filter: invert(1); 
+        }
+
+        /* --- SUBTITLE CONTAINER --- */
+        .subtitle-container {
+            width: 100%;
+            max-width: 80%; /* Forces text wrapping on narrow screens */
+            margin: 0 auto;
+        }
+
+        .subtitle {
+            color: #666; 
+            font-size: 0.5rem; 
+            font-weight: 400;
+            letter-spacing: 0.05rem;
+            text-transform: uppercase; 
+            line-height: 1.6; 
+        }
+
+        /* --- APP LINKS (Default Desktop) --- */
+        .app-container {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 2rem 3rem; 
+        }
+
+        .app-link {
+            display: flex;
+            flex-direction: row; 
+            align-items: center; 
+            text-decoration: none;
+            color: var(--text-muted); 
+            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 1;
+            padding: 1rem; 
+            border-radius: 8px; 
+        }
+
+        .app-link .material-icons-round {
+            font-size: 20px; 
+            margin-right: 12px; 
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            color: inherit; 
+        }
+
+        .app-name {
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.03rem;
+            white-space: nowrap;
+        }
+
+        /* --- DESKTOP HOVER EFFECTS --- */
+        @media (min-width: 601px) {
+            .app-link:hover { transform: translateY(-2px); }
+            
+            .app-link:nth-child(1):hover { color: var(--accent-blue); text-shadow: 0 0 15px rgba(174, 198, 207, 0.4); }
+            .app-link:nth-child(2):hover { color: var(--accent-pink); text-shadow: 0 0 15px rgba(255, 183, 178, 0.4); }
+            .app-link:nth-child(3):hover { color: var(--accent-green); text-shadow: 0 0 15px rgba(119, 221, 119, 0.4); }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.75rem;
+            color: #444;
+            padding-bottom: env(safe-area-inset-bottom, 2rem); 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 600px) {
+            .main-container { 
+                padding-top: 10vh; 
+            }
+            
+            .app-container {
+                flex-direction: column;
+                align-items: stretch; /* Stretch buttons to full width */
+                padding-left: 0;
+                gap: 1rem;
+            }
+
+            /* Turn links into BUTTONS on mobile */
+            .app-link {
+                background-color: #1E1E1E !important; 
+                border: 1px solid #333 !important;
+                justify-content: center !important; 
+                padding: 1.2rem !important; 
+                color: var(--text-main) !important; 
+                margin-bottom: 0.5rem;
+            }
+
+            /* Active state (Press effect) */
+            .app-link:active {
+                background-color: #333 !important;
+                transform: scale(0.98);
+            }
+
+            .app-link .material-icons-round {
+                margin-right: 1rem;
+            }
+            
+            /* On mobile, show colors permanently */
+            .app-link:nth-child(1) .material-icons-round { color: var(--accent-blue); }
+            .app-link:nth-child(2) .material-icons-round { color: var(--accent-pink); }
+            .app-link:nth-child(3) .material-icons-round { color: var(--accent-green); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <header>
+            <img src="images/logo.svg" alt="Andys Apps Logo" class="logo">
+            
+            <div class="subtitle-container">
+                <p class="subtitle">Boring Apps you might find useful</p>
+            </div>
+        </header>
+
+        <div class="app-container">
+            
+            <a href="#" class="app-link">
+                <span class="material-icons-round">group_work</span>
+                <span class="app-name">CoWorker</span>
+            </a>
+
+            <a href="#" class="app-link">
+                <span class="material-icons-round">local_fire_department</span>
+                <span class="app-name">Hotdrop</span>
+            </a>
+
+            <a href="#" class="app-link">
+                <span class="material-icons-round">widgets</span>
+                <span class="app-name">Another App</span>
+            </a>
+
+        </div>
+    </div>
+
+    <footer>
+        Copyright 2026 Built By Andy with Ai
+    </footer>
+
+</body>
+</html>
